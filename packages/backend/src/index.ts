@@ -1,27 +1,29 @@
-import express from 'express'
-import cors from 'cors'
-import helmet from 'helmet'
-import morgan from 'morgan'
+import { serve } from '@hono/node-server'
+import { Hono } from 'hono'
+import { cors } from 'hono/cors'
+import { logger } from 'hono/logger'
 
-const app = express()
-const PORT = process.env.PORT || 3000
+const app = new Hono()
 
 // Middleware
-app.use(helmet())
-app.use(cors())
-app.use(morgan('combined'))
-app.use(express.json())
+app.use('*', logger())
+app.use('*', cors())
 
 // Health check endpoint
-app.get('/health', (_req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() })
+app.get('/health', (c) => {
+  return c.json({ status: 'ok', timestamp: new Date().toISOString() })
 })
 
 // API routes placeholder
-app.get('/api', (_req, res) => {
-  res.json({ message: 'API Mocking Service Backend' })
+app.get('/api', (c) => {
+  return c.json({ message: 'API Mocking Service Backend' })
 })
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+const PORT = Number(process.env.PORT) || 3000
+
+console.log(`Server running on port ${PORT}`)
+
+serve({
+  fetch: app.fetch,
+  port: PORT,
 })
