@@ -1,0 +1,211 @@
+# Implementation Plan
+
+- [x] 1. Set up project structure and core dependencies
+  - Create monorepo structure with frontend and backend packages
+  - Configure pnpm workspace and shared TypeScript configuration
+  - Install core dependencies: React, TanStack Router, TanStack Query, Vite, Node.js, Express, Hono, Drizzle, SQLite
+  - Set up build tools and development scripts
+  - _Requirements: 1.1, 1.2, 1.3, 1.4_
+
+- [ ] 2. Implement database layer with Drizzle ORM
+  - [ ] 2.1 Set up Drizzle configuration and database connection
+    - Configure Drizzle with SQLite driver
+    - Create database connection utilities
+    - Set up migration system
+    - _Requirements: 1.4, 3.4, 4.5, 6.1_
+  - [ ] 2.2 Define database schema and relations
+    - Implement Drizzle schema for apis, endpoints, scenarios, and request_logs tables
+    - Define table relations and constraints
+    - Create TypeScript types from schema
+    - _Requirements: 1.4, 3.4, 4.5, 6.1_
+  - [ ] 2.3 Create database service layer
+    - Implement CRUD operations for all entities
+    - Add query builders for complex operations
+    - Handle database errors and constraints
+    - _Requirements: 1.4, 3.4, 4.5, 7.4_
+
+- [ ] 3. Build backend management API with Hono
+  - [ ] 3.1 Set up Hono server with middleware
+    - Configure Hono with TypeScript
+    - Add CORS, body parsing, and error handling middleware
+    - Set up request validation with Zod schemas
+    - _Requirements: 1.1, 1.2, 1.3, 1.4_
+  - [ ] 3.2 Implement API endpoints for mock API management
+    - Create routes for CRUD operations on mock APIs
+    - Implement port allocation logic (avoiding port 5000)
+    - Add validation for API creation and updates
+    - _Requirements: 1.1, 1.2, 1.3, 1.4, 6.1, 7.1, 7.6_
+  - [ ] 3.3 Implement endpoint and scenario management routes
+    - Create routes for managing endpoints within APIs
+    - Implement scenario CRUD operations
+    - Add validation for unique endpoint paths and methods
+    - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 4.1, 4.2, 4.3, 4.4, 4.5_
+  - [ ] 3.4 Add OpenAPI import functionality
+    - Create route for OpenAPI file upload
+    - Implement OpenAPI JSON parsing and validation
+    - Generate endpoints and basic scenarios from OpenAPI spec
+    - Handle import errors and provide feedback
+    - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
+
+- [ ] 4. Create mock server manager service
+  - [ ] 4.1 Implement port allocation and management
+    - Create port pool management system
+    - Handle port conflicts and allocation
+    - Track active ports and server instances
+    - _Requirements: 6.1, 6.6, 7.6_
+  - [ ] 4.2 Build mock server lifecycle management
+    - Implement server spawning and termination
+    - Create health monitoring for mock servers
+    - Handle server startup and shutdown errors
+    - _Requirements: 6.2, 6.6, 7.2, 7.3, 7.5_
+  - [ ] 4.3 Add request logging and monitoring
+    - Implement request/response logging system
+    - Create log storage and retrieval mechanisms
+    - Add log filtering and cleanup functionality
+    - _Requirements: 5.4, 8.1, 8.2, 8.3, 8.4, 8.5_
+
+- [ ] 5. Implement individual mock servers with Hono
+  - [ ] 5.1 Create Hono server template for mock APIs
+    - Set up basic Hono server structure
+    - Implement dynamic route registration
+    - Add middleware for request logging
+    - _Requirements: 6.2, 6.3, 6.4, 6.5_
+  - [ ] 5.2 Implement scenario matching and response logic
+    - Create scenario evaluation engine
+    - Implement condition matching for scenarios
+    - Add default scenario fallback logic
+    - Handle response generation and formatting
+    - _Requirements: 4.3, 6.4, 6.5_
+  - [ ] 5.3 Add error handling and 404 responses
+    - Implement proper error responses for unmatched routes
+    - Add request validation and error handling
+    - Create structured error response format
+    - _Requirements: 6.5_
+
+- [ ] 6. Set up frontend with React and TanStack Router
+  - [ ] 6.1 Configure TanStack Router with file-based routing
+    - Set up TanStack Router with Vite plugin
+    - Create route structure for all application pages
+    - Configure route parameters and navigation
+    - _Requirements: 1.1, 3.1, 5.1_
+  - [ ] 6.2 Set up TanStack Query with reusable queryOptions
+    - Configure TanStack Query client
+    - Create queryOptions for all data fetching operations
+    - Set up mutation handlers for API operations
+    - _Requirements: 1.1, 2.5, 3.1, 4.1, 5.1, 7.1, 8.3_
+  - [ ] 6.3 Implement shared UI components with ShadCN
+    - Set up Tailwind CSS and ShadCN components
+    - Create reusable components: StatusIndicator, PortDisplay, JsonEditor
+    - Implement form components and validation
+    - _Requirements: 1.1, 3.2, 4.2, 5.2, 7.1_
+
+- [ ] 7. Build core frontend pages and components
+  - [ ] 7.1 Create API dashboard page
+    - Implement main dashboard showing all APIs
+    - Add API status indicators and port displays
+    - Create new API button and navigation
+    - _Requirements: 1.1, 7.1_
+  - [ ] 7.2 Implement API creation and editing forms
+    - Create API editor component with validation
+    - Add form handling for API name and description
+    - Implement API creation and update functionality
+    - _Requirements: 1.2, 1.3, 1.4_
+  - [ ] 7.3 Build endpoint management interface
+    - Create endpoint list view for APIs
+    - Implement endpoint creation and editing forms
+    - Add endpoint validation and duplicate prevention
+    - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5_
+  - [ ] 7.4 Create scenario configuration components
+    - Implement scenario editor with response configuration
+    - Add scenario condition builder interface
+    - Create default scenario selection functionality
+    - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
+
+- [ ] 8. Implement OpenAPI import functionality
+  - [ ] 8.1 Create OpenAPI file upload component
+    - Build file upload interface with drag-and-drop
+    - Add file validation and error handling
+    - Implement upload progress and feedback
+    - _Requirements: 2.1, 2.4_
+  - [ ] 8.2 Build OpenAPI processing and preview
+    - Create preview interface for imported APIs
+    - Show generated endpoints and scenarios
+    - Allow editing before final import
+    - _Requirements: 2.2, 2.3, 2.5_
+
+- [ ] 9. Create API testing interface
+  - [ ] 9.1 Build endpoint testing component
+    - Create request builder interface
+    - Add support for headers, query params, and body
+    - Implement scenario selection for testing
+    - _Requirements: 5.1, 5.3_
+  - [ ] 9.2 Implement response display and logging
+    - Create response viewer with syntax highlighting
+    - Display response status, headers, and body
+    - Show request/response timing information
+    - _Requirements: 5.2, 5.4, 5.5_
+
+- [ ] 10. Build API lifecycle management
+  - [ ] 10.1 Implement start/stop functionality
+    - Add API activation and deactivation controls
+    - Create server status monitoring
+    - Handle server startup and shutdown errors
+    - _Requirements: 7.2, 7.3, 7.5_
+  - [ ] 10.2 Add API deletion with safety checks
+    - Implement API deletion with confirmation
+    - Handle active API deactivation before deletion
+    - Clean up associated data and resources
+    - _Requirements: 7.4, 7.5_
+
+- [ ] 11. Create request logging and analytics
+  - [ ] 11.1 Build log viewer interface
+    - Create log display with filtering options
+    - Add search and pagination functionality
+    - Implement real-time log updates
+    - _Requirements: 8.3, 8.4_
+  - [ ] 11.2 Add log management and cleanup
+    - Implement log archiving and cleanup
+    - Add log export functionality
+    - Create log retention policies
+    - _Requirements: 8.5_
+
+- [ ] 12. Add error handling and validation
+  - [ ] 12.1 Implement comprehensive frontend error handling
+    - Add error boundaries and fallback components
+    - Create user-friendly error messages
+    - Handle network and API errors gracefully
+    - _Requirements: 2.4, 3.5, 5.5, 7.6_
+  - [ ] 12.2 Add input validation and sanitization
+    - Implement Zod validation schemas
+    - Add client-side form validation
+    - Sanitize user inputs and file uploads
+    - _Requirements: 2.4, 3.4, 4.4_
+
+- [ ] 13. Set up development and build configuration
+  - [ ] 13.1 Configure development environment
+    - Set up concurrent development servers
+    - Configure hot reloading and debugging
+    - Add development database seeding
+    - _Requirements: All requirements for development workflow_
+  - [ ] 13.2 Create production build configuration
+    - Configure production builds for frontend and backend
+    - Set up environment variable management
+    - Create deployment scripts and documentation
+    - _Requirements: All requirements for production deployment_
+
+- [ ]* 14. Add comprehensive testing
+  - [ ]* 14.1 Write unit tests for core functionality
+    - Test database operations and business logic
+    - Test API endpoints and validation
+    - Test frontend components and utilities
+    - _Requirements: All requirements_
+  - [ ]* 14.2 Create integration tests
+    - Test complete API workflows
+    - Test mock server lifecycle management
+    - Test OpenAPI import process
+    - _Requirements: All requirements_
+  - [ ]* 14.3 Add end-to-end tests
+    - Test complete user workflows
+    - Test actual mock API functionality
+    - Test error scenarios and edge cases
+    - _Requirements: All requirements_

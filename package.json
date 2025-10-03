@@ -1,0 +1,22 @@
+{
+  "name": "api-mocking-service",
+  "version": "1.0.0",
+  "description": "A self-hostable API mocking service for developers",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "pnpm --parallel --recursive run dev",
+    "build": "pnpm --recursive run build",
+    "test": "pnpm --recursive run test",
+    "lint": "pnpm --recursive run lint",
+    "format": "pnpm --recursive run format",
+    "clean": "pnpm --recursive run clean"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "typescript": "^5.5.4"
+  },
+  "packageManager": "pnpm@9.0.0"
+}
