@@ -24,8 +24,8 @@
     - Handle database errors and constraints
     - _Requirements: 1.4, 3.4, 4.5, 7.4_
 
-- [ ] 3. Build backend management API with Hono
-  - [ ] 3.1 Set up Hono server with middleware
+- [x] 3. Build backend management API with Hono
+  - [x] 3.1 Set up Hono server with middleware
     - Configure Hono with TypeScript
     - Add CORS, body parsing, and error handling middleware
     - Set up request validation with Zod schemas
