@@ -53,3 +53,13 @@ Once the tech stack is established, document key commands here:
 - derive Typescript types from zod schemas
 - follow an easy to understand structure for business logic - use services for all business logic
 - utilise common design patterns where they fit the purpose
+
+## Data Validation Requirements
+- **All data from frontend must be validated on both frontend and backend using Zod schema validation**
+- Define Zod schemas in shared locations that can be used by both frontend and backend
+- Use the same validation schemas to ensure consistency across the application
+- Validate input data at API endpoints before processing
+- Return meaningful validation error messages to the frontend
+- Never trust client-side validation alone - always validate on the server
+- Use Zod's `parse()` method for strict validation or `safeParse()` for error handling
+- Derive TypeScript types from Zod schemas using `z.infer<>` to maintain type safety

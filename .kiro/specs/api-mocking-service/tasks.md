@@ -7,18 +7,18 @@
   - Set up build tools and development scripts
   - _Requirements: 1.1, 1.2, 1.3, 1.4_
 
-- [ ] 2. Implement database layer with Drizzle ORM
-  - [ ] 2.1 Set up Drizzle configuration and database connection
+- [x] 2. Implement database layer with Drizzle ORM
+  - [x] 2.1 Set up Drizzle configuration and database connection
     - Configure Drizzle with SQLite driver
     - Create database connection utilities
     - Set up migration system
     - _Requirements: 1.4, 3.4, 4.5, 6.1_
-  - [ ] 2.2 Define database schema and relations
+  - [x] 2.2 Define database schema and relations
     - Implement Drizzle schema for apis, endpoints, scenarios, and request_logs tables
     - Define table relations and constraints
     - Create TypeScript types from schema
     - _Requirements: 1.4, 3.4, 4.5, 6.1_
-  - [ ] 2.3 Create database service layer
+  - [x] 2.3 Create database service layer
     - Implement CRUD operations for all entities
     - Add query builders for complex operations
     - Handle database errors and constraints
