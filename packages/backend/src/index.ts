@@ -53,6 +53,8 @@ app.get('/api', (c) => {
     endpoints: {
       health: '/health',
       apis: '/api/apis',
+      endpoints: '/api/apis/:apiId/endpoints',
+      scenarios: '/api/endpoints/:endpointId/scenarios',
       openapi: '/api/openapi',
     },
     timestamp: new Date().toISOString(),
@@ -67,9 +69,18 @@ app.route('/api/example', exampleRouter)
 import { apiRouter } from './routes/apis.js'
 app.route('/api/apis', apiRouter)
 
-// TODO: Add endpoint management routes (/api/apis/:id/endpoints)
-// TODO: Add scenario management routes (/api/endpoints/:id/scenarios)
-// TODO: Add OpenAPI import routes (/api/openapi/import)
+// Endpoint management routes
+import { endpointRouter } from './routes/endpoints.js'
+app.route('/api/apis/:apiId/endpoints', endpointRouter)
+
+// Scenario management routes
+import { scenarioRouter } from './routes/scenarios.js'
+app.route('/api/endpoints/:endpointId/scenarios', scenarioRouter)
+
+// OpenAPI import routes
+import { openApiRouter } from './routes/openapi.js'
+app.route('/api/openapi', openApiRouter)
+// TODO: Implement oRPC for type-safe frontend-backend communication
 
 const PORT = Number(process.env.PORT) || 3000
 

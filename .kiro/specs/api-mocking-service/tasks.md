@@ -30,17 +30,17 @@
     - Add CORS, body parsing, and error handling middleware
     - Set up request validation with Zod schemas
     - _Requirements: 1.1, 1.2, 1.3, 1.4_
-  - [ ] 3.2 Implement API endpoints for mock API management
+  - [x] 3.2 Implement API endpoints for mock API management
     - Create routes for CRUD operations on mock APIs
     - Implement port allocation logic (avoiding port 5000)
     - Add validation for API creation and updates
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 6.1, 7.1, 7.6_
-  - [ ] 3.3 Implement endpoint and scenario management routes
+  - [x] 3.3 Implement endpoint and scenario management routes
     - Create routes for managing endpoints within APIs
     - Implement scenario CRUD operations
     - Add validation for unique endpoint paths and methods
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 4.1, 4.2, 4.3, 4.4, 4.5_
-  - [ ] 3.4 Add OpenAPI import functionality
+  - [x] 3.4 Add OpenAPI import functionality
     - Create route for OpenAPI file upload
     - Implement OpenAPI JSON parsing and validation
     - Generate endpoints and basic scenarios from OpenAPI spec

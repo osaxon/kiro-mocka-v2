@@ -69,6 +69,28 @@ apiRouter.get('/',
   }
 )
 
+// GET /apis/active - Get all active APIs
+apiRouter.get('/active',
+  async (c) => {
+    try {
+      const activeApis = await apiService.findActive()
+
+      return c.json({
+        data: activeApis,
+        count: activeApis.length,
+        timestamp: new Date().toISOString(),
+      })
+    } catch (error) {
+      console.error('Error fetching active APIs:', error)
+      return c.json({
+        error: 'Internal server error',
+        message: 'Failed to fetch active APIs',
+        timestamp: new Date().toISOString(),
+      }, 500)
+    }
+  }
+)
+
 // GET /apis/:id - Get single API with endpoints
 apiRouter.get('/:id',
   validateParam(idParamSchema),
@@ -360,28 +382,6 @@ apiRouter.post('/:id/stop',
       return c.json({
         error: 'Internal server error',
         message: 'Failed to stop API',
-        timestamp: new Date().toISOString(),
-      }, 500)
-    }
-  }
-)
-
-// GET /apis/active - Get all active APIs
-apiRouter.get('/active',
-  async (c) => {
-    try {
-      const activeApis = await apiService.findActive()
-
-      return c.json({
-        data: activeApis,
-        count: activeApis.length,
-        timestamp: new Date().toISOString(),
-      })
-    } catch (error) {
-      console.error('Error fetching active APIs:', error)
-      return c.json({
-        error: 'Internal server error',
-        message: 'Failed to fetch active APIs',
         timestamp: new Date().toISOString(),
       }, 500)
     }
