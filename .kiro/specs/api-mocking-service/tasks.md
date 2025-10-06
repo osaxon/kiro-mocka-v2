@@ -47,18 +47,18 @@
     - Handle import errors and provide feedback
     - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
 
-- [ ] 4. Create mock server manager service
-  - [ ] 4.1 Implement port allocation and management
+- [-] 4. Create mock server manager service
+  - [x] 4.1 Implement port allocation and management
     - Create port pool management system
     - Handle port conflicts and allocation
     - Track active ports and server instances
     - _Requirements: 6.1, 6.6, 7.6_
-  - [ ] 4.2 Build mock server lifecycle management
+  - [x] 4.2 Build mock server lifecycle management
     - Implement server spawning and termination
     - Create health monitoring for mock servers
     - Handle server startup and shutdown errors
     - _Requirements: 6.2, 6.6, 7.2, 7.3, 7.5_
-  - [ ] 4.3 Add request logging and monitoring
+  - [x] 4.3 Add request logging and monitoring
     - Implement request/response logging system
     - Create log storage and retrieval mechanisms
     - Add log filtering and cleanup functionality

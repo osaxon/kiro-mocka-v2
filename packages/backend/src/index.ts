@@ -80,19 +80,75 @@ app.route('/api/endpoints/:endpointId/scenarios', scenarioRouter)
 // OpenAPI import routes
 import { openApiRouter } from './routes/openapi.js'
 app.route('/api/openapi', openApiRouter)
+
+// Mock server management routes
+import { mockServerRouter } from './routes/mock-servers.js'
+app.route('/api/mock-servers', mockServerRouter)
+
+// Logs and monitoring routes
+import { logsRouter } from './routes/logs.js'
+app.route('/api/logs', logsRouter)
+
+// Initialize monitoring service
+import { monitoringService } from './services/index.js'
+
 // TODO: Implement oRPC for type-safe frontend-backend communication
 
 const PORT = Number(process.env.PORT) || 3000
 
+// Initialize services
+async function initializeServices() {
+  try {
+    await monitoringService.initialize()
+    console.log('✅ All services initialized successfully')
+  } catch (error) {
+    console.error('❌ Failed to initialize services:', error)
+    process.exit(1)
+  }
+}
+
+// Graceful shutdown
+process.on('SIGINT', async () => {
+  console.log('\n🛑 Received SIGINT, shutting down gracefully...')
+  try {
+    await monitoringService.shutdown()
+    console.log('✅ Services shut down successfully')
+    process.exit(0)
+  } catch (error) {
+    console.error('❌ Error during shutdown:', error)
+    process.exit(1)
+  }
+})
+
+process.on('SIGTERM', async () => {
+  console.log('\n🛑 Received SIGTERM, shutting down gracefully...')
+  try {
+    await monitoringService.shutdown()
+    console.log('✅ Services shut down successfully')
+    process.exit(0)
+  } catch (error) {
+    console.error('❌ Error during shutdown:', error)
+    process.exit(1)
+  }
+})
+
 console.log(`🚀 Server running on port ${PORT}`)
 console.log(`📋 Health check: http://localhost:${PORT}/health`)
 console.log(`🔧 API endpoint: http://localhost:${PORT}/api`)
+console.log(`📊 Logs endpoint: http://localhost:${PORT}/api/logs`)
+console.log(`🖥️  Mock servers endpoint: http://localhost:${PORT}/api/mock-servers`)
 console.log(`🛡️  Security headers enabled`)
 console.log(`⏱️  Request timeout: 30s`)
 console.log(`📏 Body size limit: 10MB`)
 console.log(`🚦 Rate limit: 1000 requests per 15 minutes`)
 
-serve({
-  fetch: app.fetch,
-  port: PORT,
+// Initialize services and start server
+initializeServices().then(() => {
+  serve({
+    fetch: app.fetch,
+    port: PORT,
+  })
+}).catch((error) => {
+  console.error('❌ Failed to start server:', error)
+  process.exit(1)
 })
