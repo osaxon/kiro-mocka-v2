@@ -13,8 +13,7 @@ export * from './schema.js'
 // Database types
 export * from './types.js'
 
-// Database services
-export * from './services/index.js'
+// Note: Database services have been moved to ../services/
 
 // Error handling
 export * from './errors.js'

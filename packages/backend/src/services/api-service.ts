@@ -1,6 +1,6 @@
 import { eq, desc } from 'drizzle-orm'
-import { db } from '../connection.js'
-import { apis, endpoints, scenarios } from '../schema.js'
+import { db } from '../db/connection.js'
+import { apis, endpoints, scenarios } from '../db/schema.js'
 import type {
   Api,
   NewApi,
@@ -8,11 +8,11 @@ import type {
   ApiWithEndpointsAndScenarios,
   CreateApiRequest,
   UpdateApiRequest
-} from '../types.js'
+} from '../db/types.js'
 import {
   CreateApiWithPortRequestSchema,
   UpdateApiRequestSchema
-} from '../types.js'
+} from '../db/types.js'
 
 export class ApiService {
   /**

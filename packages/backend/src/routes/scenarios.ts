@@ -1,8 +1,8 @@
 import { Hono } from 'hono'
 import { validateJson, validateQuery, validateParam, paginationQuerySchema } from '../middleware/index.js'
-import { ScenarioService } from '../db/services/scenario-service.js'
-import { EndpointService } from '../db/services/endpoint-service.js'
-import { ApiService } from '../db/services/api-service.js'
+import { ScenarioService } from '../services/scenario-service.js'
+import { EndpointService } from '../services/endpoint-service.js'
+import { ApiService } from '../services/api-service.js'
 import {
   CreateScenarioRequestSchema,
   UpdateScenarioRequestSchema,

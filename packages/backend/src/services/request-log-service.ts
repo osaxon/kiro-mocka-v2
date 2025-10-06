@@ -1,13 +1,13 @@
 import { eq, and, desc, gte, lte, sql } from 'drizzle-orm'
-import { db } from '../connection.js'
-import { requestLogs } from '../schema.js'
+import { db } from '../db/connection.js'
+import { requestLogs } from '../db/schema.js'
 import type {
   RequestLog,
   NewRequestLog,
   RequestHeaders,
   ResponseHeaders,
   LogFilters
-} from '../types.js'
+} from '../db/types.js'
 
 export interface CreateLogRequest {
   apiId: string

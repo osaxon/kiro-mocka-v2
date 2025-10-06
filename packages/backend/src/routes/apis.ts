@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { validateJson, validateQuery, validateParam, idParamSchema, paginationQuerySchema } from '../middleware/index.js'
-import { ApiService } from '../db/services/api-service.js'
+import { ApiService } from '../services/api-service.js'
 import {
   CreateApiRequestSchema,
   UpdateApiRequestSchema,

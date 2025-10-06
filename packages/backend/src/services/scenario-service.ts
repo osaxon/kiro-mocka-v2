@@ -1,12 +1,12 @@
 import { eq, and, desc } from 'drizzle-orm'
-import { db } from '../connection.js'
-import { scenarios, endpoints } from '../schema.js'
+import { db } from '../db/connection.js'
+import { scenarios, endpoints } from '../db/schema.js'
 import type {
   Scenario,
   NewScenario,
   CreateScenarioRequest,
   UpdateScenarioRequest
-} from '../types.js'
+} from '../db/types.js'
 
 export class ScenarioService {
   /**

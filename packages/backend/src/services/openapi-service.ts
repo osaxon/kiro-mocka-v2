@@ -1,6 +1,6 @@
-import { ApiService } from '../db/services/api-service.js'
-import { EndpointService } from '../db/services/endpoint-service.js'
-import { ScenarioService } from '../db/services/scenario-service.js'
+import { ApiService } from './api-service.js'
+import { EndpointService } from './endpoint-service.js'
+import { ScenarioService } from './scenario-service.js'
 import type { HttpMethod } from '../db/types.js'
 
 export interface ParsedEndpoint {

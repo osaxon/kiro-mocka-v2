@@ -1,6 +1,6 @@
 import { eq, and, desc } from 'drizzle-orm'
-import { db } from '../connection.js'
-import { endpoints, scenarios } from '../schema.js'
+import { db } from '../db/connection.js'
+import { endpoints, scenarios } from '../db/schema.js'
 import type {
   Endpoint,
   NewEndpoint,
@@ -8,7 +8,7 @@ import type {
   CreateEndpointRequest,
   UpdateEndpointRequest,
   HttpMethod
-} from '../types.js'
+} from '../db/types.js'
 
 export class EndpointService {
   /**
